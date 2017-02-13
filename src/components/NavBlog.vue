@@ -26,7 +26,8 @@
           <router-link to="/" class="nav-link">管理</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/login" v-if="!user">登录</router-link>
+          <router-link to="/blog/login" class="nav-link"  data-toggle="modal" data-target="#myModal" v-if="!user">登录
+          </router-link>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -38,11 +39,30 @@
 </template>
 
 <script>
+
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-  name: 'header-blog',
+  name: 'nav-blog',
   data () {
     return {
       nickName: 'ZhouYanNan'
+    }
+  },
+  computed: {
+    ...mapGetters({
+      UserInfo: 'UserInfo'
+    }),
+    ...mapActions({
+      UserLogout: 'UserLogout'
+    }),
+    user () {
+      return this.UserInfo
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('UserLogout')
     }
   }
 }

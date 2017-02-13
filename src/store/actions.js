@@ -8,7 +8,7 @@ export const UserLogin = ({ commit }, data) => {
       commit(USER_SIGNIN, response.data.token)
       window.location = '/blog'
     } else {
-      window.location = '/login'
+      window.location = '/blog'
     }
   })
   .catch(function (error) {
@@ -19,7 +19,7 @@ export const UserLogin = ({ commit }, data) => {
 export const UserLogout = ({ commit }, data) => {
   api.localLogout(data).then(function (response) {
     commit(USER_SIGNOUT)
-    window.location = '/login'
+    window.location = '/blog'
   })
     .catch(function (error) {
       console.log(error)
