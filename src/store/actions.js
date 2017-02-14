@@ -4,9 +4,8 @@ import { USER_SIGNIN, USER_SIGNOUT, USER_REG } from './types'
 export const UserLogin = ({ commit }, data) => {
   api.localLogin(data).then(function (response) {
     console.log(response)
-    if (response.success === true) {
-      commit(USER_SIGNIN, response.data.token)
-      window.location = '/blog'
+    if (response.status === 200 && response.data.success) {
+      commit(USER_SIGNIN, {user: response.data.data.userId})
     } else {
       window.location = '/blog'
     }
@@ -19,6 +18,7 @@ export const UserLogin = ({ commit }, data) => {
 export const UserLogout = ({ commit }, data) => {
   api.localLogout(data).then(function (response) {
     commit(USER_SIGNOUT)
+    alert('UserLogout')
     window.location = '/blog'
   })
     .catch(function (error) {
