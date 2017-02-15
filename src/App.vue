@@ -1,15 +1,10 @@
 <template>
   <div id="app" class="container">
     <nav-blog></nav-blog>
-    <router-view></router-view>
     <header-blog></header-blog>
     <div class="row">
-      <div class="col-xs-12 col-md-9">
-        <list-blog></list-blog>
-      </div>
-      <div class="col-xs-8 col-md-3">
-        <aside-blog></aside-blog>
-      </div>
+      <router-view></router-view>
+      <router-view name='a'></router-view>
     </div>
     <footer-blog></footer-blog>
   </div>
@@ -19,8 +14,6 @@
 
 import HeaderBlog from './components/HeaderBlog'
 import NavBlog from './components/NavBlog'
-import ListBlog from './components/ListBlog'
-import AsideBlog from './components/AsideBlog'
 import FooterBlog from './components/FooterBlog'
 
 export default {
@@ -28,8 +21,6 @@ export default {
   components: {
     NavBlog,
     HeaderBlog,
-    ListBlog,
-    AsideBlog,
     FooterBlog
   }
 }

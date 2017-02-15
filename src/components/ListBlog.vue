@@ -1,11 +1,13 @@
 <template>
-  <div class="container">
-    <article v-for="article in articles" class="jumbotron">
-      <span>{{ article.date }}</span>
-      <br>
-      <h4>{{ article.title }}</h4>
-      <div>{{ article.summary }}</div>
-    </article>
+  <div class="col-xs-12 col-md-9">
+    <div class="container">
+      <article v-for="article in articles" class="jumbotron">
+        <span>{{ article.date }}</span>
+        <br>
+        <h4>{{ article.title }}</h4>
+        <div>{{ article.summary }}</div>
+      </article>
+    </div>
   </div>
 </template>
 

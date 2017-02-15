@@ -5,13 +5,13 @@ import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
 
 var instance = axios.create()
-if (localStorage.getItem('user')) {
-  instance.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('user').replace(/(^\\")|(\\"$)/g, '')
-}
+// if (localStorage.getItem('user')) {
+//   instance.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('user').replace(/(^\\")|(\\"$)/g, '')
+// }
 
 export default {
   localLogin: function (data) {
-    console.log(data.username + '====================================')
+    console.log('api/index--data' + data)
     return Vue.axios.post('/blog/user/login', data)
   },
   localLogout: function (data) {

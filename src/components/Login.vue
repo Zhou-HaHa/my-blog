@@ -1,9 +1,8 @@
 <template>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="container">
+<div class='row' id="login">
+  <div class="col-xs-4 col-md-4"></div>
+  <div class="col-xs-4 col-md-4">
+   <div class="container">
           <div class="col-md-12">
             <h1 class="margin-bottom-15">登录</h1>
             <form class="form-horizontal templatemo-container templatemo-login-form-1 margin-bottom-30" role="form"method="post" @submit.prevent="sub()">
@@ -14,12 +13,12 @@
                     <input type="text" class="form-control" id="username" placeholder="用户名" v-model="user.username">
                   </div>
                 </div>
-              </div>
+              </div>  
               <div class="form-group">
                 <div class="col-md-12">
                   <div class="control-wrapper">
                     <label for="password" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
-                    <input type="password" class="form-control" id="password" placeholder="密码" v-model="user.password"      >
+                    <input type="password" class="form-control" id="password" placeholder="密码" v-model="user.password">
                   </div>
                 </div>
               </div>
@@ -32,9 +31,11 @@
             </form>
           </div>
         </div>
-      </div>
-    </div>
+
+
+
   </div>
+  <div class="col-xs-4 col-md-4"></div>
 </div>
 
 </template>
@@ -59,7 +60,18 @@
     methods: {
       sub () {
         this.$store.dispatch('UserLogin', this.user)
+        console.log(this.$el)
       }
     }
   }
 </script>
+
+<style scoped>
+  #login {
+    padding-top: 120px;
+  }
+
+  h1 {
+    padding-top: 20px;
+  }
+</style>

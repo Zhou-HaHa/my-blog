@@ -1,5 +1,5 @@
 <template>
- <div>dfasdfsdiojakfkkkkfkfkfkfkfkfkfkfkfkfkfkfkfkfkkkk</div>
+ <div></div>
 </template>
 
 <script>

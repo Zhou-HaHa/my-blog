@@ -9,12 +9,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <router-link to="/" class="nav-link">主页
+          <router-link to="/blog" class="nav-link">主页
             <span class="sr-only">(current)</span>
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/" class="nav-link">博问</router-link>
+          <router-link to="/blog" class="nav-link">博问</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/" class="nav-link">新随笔</router-link>
@@ -26,7 +26,7 @@
           <router-link to="/" class="nav-link">管理</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/blog/login" class="nav-link"  data-toggle="modal" data-target="#myModal" v-if="!user">登录
+          <router-link to="/login" class="nav-link"  data-toggle="modal" data-target="#myModal" v-if="!user">登录
           </router-link>
         </li>
       </ul>
