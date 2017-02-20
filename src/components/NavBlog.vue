@@ -4,12 +4,17 @@
     <span class="navbar-toggler-icon"></span>
     </button>
       <router-link to="/">
-        <span class="badge badge-success">{{ nickName }} 的博客</span>
+        <span class="badge badge-success">{{ $route.params.id }} 的博客</span>
       </router-link>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <router-link to="/blog" class="nav-link">主页
+            <span class="sr-only">(current)</span>
+          </router-link>
+        </li>
+        <li class="nav-item active">
+          <router-link :to="{ name: 'user', params: { id: user }}" class="nav-link" v-if='user'>个人首页
             <span class="sr-only">(current)</span>
           </router-link>
         </li>
@@ -26,7 +31,7 @@
           <router-link to="/" class="nav-link">管理</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/login" class="nav-link"  data-toggle="modal" data-target="#myModal" v-if="!user">登录
+          <router-link to="/blog/user/login" class="nav-link"  data-toggle="modal" data-target="#myModal" v-if="!user">登录
           </router-link>
         </li>
       </ul>

@@ -4,6 +4,7 @@ import ListBlog from 'components/ListBlog'
 import Login from 'components/Login'
 import AsideNav from 'components/AsideNav'
 import AsideBlog from 'components/AsideBlog'
+import DetailBlog from 'components/DetailBlog'
 
 Vue.use(VueRouter)
 
@@ -17,12 +18,20 @@ export default new VueRouter({
       }
     }, {
       path: '/blog/:id',
+      name: 'user',
       components: {
         default: ListBlog,
         a: AsideBlog
       }
     }, {
-      path: '/login',
+      path: '/blog/:id/article/:blogId',
+      name: 'detail',
+      components: {
+        default: DetailBlog,
+        a: AsideBlog
+      }
+    }, {
+      path: '/blog/user/login',
       name: 'login',
       meta: { auth: false },
       component: Login
