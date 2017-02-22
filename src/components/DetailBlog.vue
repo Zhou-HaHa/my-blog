@@ -3,30 +3,50 @@
     <div class="container">
       <article class="jumbotron">
       <p>
-        <span>{{ formatDate(article.blog.updateDate) }}</span>
+        <span>{{ formatDate(article.updateDate) }}</span>
         <br>
-        <h4>{{ article.blog.title }}</h4>
-        <p>{{ article.blog.content }}</p>
+        <h4>{{ article.title }}</h4>
+        <p>{{ article.content }}</p>
+        <div>
+          <h6>标签: <span class="label label-success" v-for="tag in tagList" >{{ tag.tagName }}</span></h6>
+        </div>
         <div class="text-right">
-          <span>Post@ <span class="badge text-success">{{ formatDate(article.blog.updateDate) }}</span></span>
-          <span>评论 <span class="badge text-success">({{ article.statistics.commendCount }})</span></span>
-          <span>阅读 <span class="badge text-success">({{ article.statistics.readCount }})</span></span>
+          <span>Post@ <span class="badge text-success">{{ formatDate(article.createDate) }}</span></span>
+          <span>评论 <span class="badge text-success">({{ statistics.commendCount }})</span></span>
+          <span>阅读 <span class="badge text-success">({{ statistics.readCount }})</span></span>
         </div>
       </p>
       </article>
     </div>
-    <span class="badge">42</span>
   </div>
 </template>
 
 <script>
 
+import API from '../api'
+
 export default {
   name: 'detail-blog',
   data () {
     return {
-      article: {blog: {updateDate: 1486742400000, title: 'test', content: 'content'}, statistics: {commendCount: 1, readCount: 1}}
+      article: {updateDate: 1486742400000, title: 'test', content: 'content'},
+      statistics: {},
+      commentsPOList: [],
+      tagList: [{tagName: 'HTML'}, {tagName: 'WEB'}],
+      categoryList: []
     }
+  },
+
+  created () {
+    API.getBlogDetail(this.$route.params).then(response => {
+      if (response.data.success) {
+        this.article = response.data.data.blog
+        this.statistics = response.data.data.statistics
+        this.commentsPOList = response.data.data.commentsPOList
+        this.tagList = response.data.data.tagList
+        this.categoryList = response.data.data.categoryList
+      }
+    })
   },
 
   methods: {

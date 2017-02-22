@@ -32,6 +32,8 @@ export default {
       return Vue.axios.get(ROOT_API + '/blog' + '?offset=' + currentPage)
     }
     return Vue.axios.get(ROOT_API + '/blog')
+  },
+  getBlogDetail: function (data) {
+    return Vue.axios.get(ROOT_API + '/blog' + '/' + data.id + '/article/' + data.blogId)
   }
 }
-
