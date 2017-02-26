@@ -20,7 +20,7 @@
         <div class="form-group row">
           <label for="example-text-title" class="col-2 col-form-label">Tag</label>
           <div class="col-10">
-            <input class="form-control" type="text" id="example-text-title" v-model="blog.tag" required>
+            <input class="form-control" type="text" id="example-text-title" v-model="blog.tags" required>
           </div>
         </div> 
         <input type="submit" value="Submit" class="btn btn-info">
@@ -44,7 +44,7 @@
           title: '123',
           content: '123',
           category: '123',
-          tag: '123',
+          tags: '123',
           account: this.$store.getters.UserInfo
         },
         message: '',
@@ -63,7 +63,6 @@
     methods: {
       add () {
         console.log(this.$store.getters.UserInfo)
-        alert(this.value)
         API.addBlog(this.blog).then(response => {
           if (response.data.success) {
             this.message = response.data.message
