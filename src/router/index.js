@@ -5,6 +5,7 @@ import Login from 'components/Login'
 import AsideNav from 'components/AsideNav'
 import AsideBlog from 'components/AsideBlog'
 import DetailBlog from 'components/DetailBlog'
+import AddBlog from 'components/AddBlog'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,12 @@ export default new VueRouter({
       components: {
         default: ListBlog,
         a: AsideNav
+      }
+    }, {
+      path: '/blog/addBlog',
+      components: {
+        default: AddBlog,
+        a: AsideBlog
       }
     }, {
       path: '/blog/:id',

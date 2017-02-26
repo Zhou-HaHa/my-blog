@@ -4,7 +4,7 @@
     <span class="navbar-toggler-icon"></span>
     </button>
       <router-link to="/">
-        <span class="badge badge-success">{{ $route.params.id }} 的博客</span>
+        <span class="badge badge-success" v-if='user'>{{ $route.params.id }} 的博客</span>
       </router-link>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
@@ -22,7 +22,7 @@
           <router-link to="/blog" class="nav-link">博问</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/" class="nav-link">新随笔</router-link>
+          <router-link to="/blog/addBlog" class="nav-link">新随笔</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/" class="nav-link">订阅</router-link>

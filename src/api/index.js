@@ -35,5 +35,8 @@ export default {
   },
   getBlogDetail: function (data) {
     return Vue.axios.get(ROOT_API + '/blog' + '/' + data.id + '/article/' + data.blogId)
+  },
+  addBlog: function (data) {
+    return Vue.axios.post(ROOT_API + '/blog/addBlog', data)
   }
 }
