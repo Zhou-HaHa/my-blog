@@ -19,7 +19,7 @@ export default {
     return instance.post('/blog/logout', data)
   },
   localReg: function (data) {
-    return Vue.axios.post('/blog/reg', data)
+    return Vue.axios.post('/blog/user/reg', data)
   },
   getBlogListByUser: function (data, currentPage) {
     if (currentPage) {

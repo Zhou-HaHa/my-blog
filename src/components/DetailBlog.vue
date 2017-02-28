@@ -6,7 +6,7 @@
         <span>{{ formatDate(article.updateDate) }}</span>
         <br>
         <h4>{{ article.title }}</h4>
-        <p>{{ article.content }}</p>
+        <p v-html="article.content"></p>
         <div>
           <h6>标签: <span class="label label-success" v-for="tag in tagList" >{{ tag.tagName }}</span></h6>
         </div>

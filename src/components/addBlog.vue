@@ -4,7 +4,7 @@
       <div class="alert" v-bind:class="[alert.type]" v-bind:style="{ display: alert.display }" role="alert">
         <strong>Well done!</strong> {{ message }}
       </div>
-      <form method="post" @submit.prevent="add()">
+      <form method="post" @submit.prevent="add()" v-on:change="formChange">
         <div class="form-group row">
           <label for="example-text-title" class="col-2 col-form-label">Title</label>
           <div class="col-10">
@@ -23,7 +23,7 @@
             <input class="form-control" type="text" id="example-text-title" v-model="blog.tags" required>
           </div>
         </div> 
-        <input type="submit" value="Submit" class="btn btn-info">
+        <input type="submit" value="Submit" class="btn btn-info btn-lg btn-block">
       </form>
     </div>
   </div>
@@ -49,8 +49,8 @@
         },
         message: '',
         alert: {
-          type: 'alert-success',
-          display: false
+          type: 'alert-danger',
+          display: 'none'
         },
         defaultMsg: '初始文本',
         config: {
@@ -65,17 +65,31 @@
         console.log(this.$store.getters.UserInfo)
         API.addBlog(this.blog).then(response => {
           if (response.data.success) {
+            this.alert.type = 'alert-success'
+            this.alert.display = ''
+            this.message = response.data.message
+            setTimeout(() => {
+              this.alert.display = 'none'
+              this.$router.push('/blog/' + this.$store.getters.UserInfo)
+            }, 3000)
+          } else {
+            this.alert.type = 'alert-danger'
+            this.alert.display = 'none'
             this.message = response.data.message
           }
         })
       },
       input (message) {
-        this.blog.content = message.content
+        this.blog.content = message
       },
       ready (message) {
         // TODO
         console.log(message)
+      },
+      formChange () {
+        this.alert.display = 'none'
       }
+
     }
 
   }
@@ -88,6 +102,7 @@
   height: 200%;
   padding: 10px;
   margin: 5px;
+  padding: 70px;
 }
 
 </style>

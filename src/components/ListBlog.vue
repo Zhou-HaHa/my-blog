@@ -6,7 +6,7 @@
         <span>{{ formatDate(article.blog.updateDate) }}</span>
         <br>
         <h4><router-link :to="{name: 'detail', params: { id: article.account, blogId: article.blog.guid }}" >{{ article.blog.title }}</router-link></h4>
-        <p>{{ article.blog.content }}</p>
+        <p v-html="article.blog.plainTxt"></p>
         <div class="text-right">
           <span>Post@ <span class="badge text-success">{{ formatDate(article.blog.updateDate) }}</span></span>
           <span>评论 <span class="badge text-success">(1)</span></span>
@@ -48,9 +48,10 @@ export default {
           'blogId': 100,
           'userId': 100,
           'title': 'testBlog',
-          'content': 'This is test',
+          'content': '<p>This is test</p>',
           'createDate': 1486742400000,
-          'updateDate': 1486742400000
+          'updateDate': 1486742400000,
+          'plainTxt': 'This is test'
         },
         'statistics': {
           'blogId': 100,

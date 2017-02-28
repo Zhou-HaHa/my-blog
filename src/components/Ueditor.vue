@@ -11,7 +11,7 @@
   export default {
     data () {
       return {
-        id: 'ueditorId'
+        id: 'ueditorId' + Math.random(10)
       }
     },
 
@@ -35,11 +35,11 @@
     },
 
     mounted() {
-      this.$nextTick(function f1() {
+      this.$nextTick(() => {
         this.$refs.editor.id = this.id
         this.editor = UE.getEditor(this.id, this.config)
 
-        this.editor.ready(function f2() {
+        this.editor.ready(() => {
           this.editor.setContent(this.value)
 
           this.editor.addListener("contentChange", function () {
@@ -50,7 +50,7 @@
           }.bind(this))
 
           this.$emit('ready', this.editor)
-        }.bind(this))
+        })
       });
     },
   }

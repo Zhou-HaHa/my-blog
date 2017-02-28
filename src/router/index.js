@@ -6,6 +6,7 @@ import AsideNav from 'components/AsideNav'
 import AsideBlog from 'components/AsideBlog'
 import DetailBlog from 'components/DetailBlog'
 import AddBlog from 'components/AddBlog'
+import Register from 'components/Register'
 
 Vue.use(VueRouter)
 
@@ -42,6 +43,10 @@ export default new VueRouter({
       name: 'login',
       meta: { auth: false },
       component: Login
+    }, {
+      path: '/blog/user/register',
+      name: 'register',
+      component: Register
     }
   ],
   mode: 'history' // need to start

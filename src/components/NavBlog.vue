@@ -3,8 +3,8 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
-      <router-link to="/">
-        <span class="badge badge-success" v-if='user'>{{ $route.params.id }} 的博客</span>
+      <router-link to="/" v-if='user'>
+        <span class="badge badge-success" >{{ $route.params.id }} 的博客</span>
       </router-link>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
@@ -33,6 +33,9 @@
         <li class="nav-item">
           <router-link to="/blog/user/login" class="nav-link"  data-toggle="modal" data-target="#myModal" v-if="!user">登录
           </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/blog/user/register" class="nav-link" data-toggle="modal">注册</router-link>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
