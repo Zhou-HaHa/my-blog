@@ -61,8 +61,6 @@
       sub () {
         this.$store.dispatch('UserLogin', this.user)
         if (this.$store.getters.UserInfo) {
-          console.log('-----=======')
-          console.log(this.$router)
           this.$router.push('/blog/' + this.$store.getters.UserInfo)
         } else {
           console.log(this.$router)

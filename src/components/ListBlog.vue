@@ -1,6 +1,6 @@
 <template>
   <div class="col-xs-12 col-md-9">
-    <div class="container">
+    <div class="container" v-if="showPagination">
       <article v-for="article in articles" class="jumbotron">
       <p>
         <span>{{ formatDate(article.blog.updateDate) }}</span>
@@ -33,6 +33,9 @@
           <li v-show="last < totalPage"><a v-on:click='getpagination(totalPage)' class="badge text-success">末页</a></li>
         </ul>
       </nav>
+    </div>
+    <div class="container" v-else>
+      <div class="alert alert-info" role="alert">{{ message }}</div>
     </div>
   </div>
 </template>
@@ -71,17 +74,19 @@ export default {
       currentPage: 1,
       prefix: [4, 3, 2, 1],
       suffix: [1, 2, 3, 4],
-      last: 0
+      last: 0,
+      showPagination: true,
+      message: ''
     }
   },
   mounted () {
-    console.log(this.$store.getters)
-    console.log(this.$store.getters.UserInfo)
     if (this.$store.getters.UserInfo) {
       API.getBlogListByUser(this.$store.getters.UserInfo, 1).then(response => {
-        console.log('------------test-------------')
-        console.log(this)
-        console.log(response.data.data)
+        if (!response.data.success) {
+          this.message = response.data.message
+          this.showPagination = response.data.success
+          return
+        }
         this.articles = response.data.data
         this.totalPage = response.data.pagination.totalPage
         this.totalSize = response.data.pagination.totalSize
@@ -89,11 +94,12 @@ export default {
       })
     } else {
       API.getBlogList(1).then(response => {
-        console.log('------------blog-------------')
-        console.log(this)
-        console.log(response.data.data)
+        if (!response.data.success) {
+          this.message = response.data.message
+          this.showPagination = response.data.success
+          return
+        }
         this.articles = response.data.data
-        console.log(this.articles)
         this.totalPage = response.data.pagination.totalPage
         this.totalSize = response.data.pagination.totalSize
         this.currentPage = response.data.pagination.currentPage
@@ -114,18 +120,24 @@ export default {
     getpagination: function (currentPage) {
       if (this.$store.getters.UserInfo) {
         API.getBlogListByUser(this.$store.getters.UserInfo, currentPage).then(response => {
-          console.log(this)
+          if (!response.data.success) {
+            this.message = response.data.message
+            this.showPagination = response.data.success
+            return
+          }
           this.articles = response.data.data
-          console.log(response.data.data)
           this.totalPage = response.data.pagination.totalPage
           this.totalSize = response.data.pagination.totalSize
           this.currentPage = response.data.pagination.currentPage
         })
       } else {
         API.getBlogList(currentPage).then(response => {
-          console.log(this)
+          if (!response.data.success) {
+            this.message = response.data.message
+            this.showPagination = response.data.success
+            return
+          }
           this.articles = response.data.data
-          console.log(response.data.data)
           this.totalPage = response.data.pagination.totalPage
           this.totalSize = response.data.pagination.totalSize
           this.currentPage = response.data.pagination.currentPage
@@ -139,9 +151,13 @@ export default {
 
 <style scoped>
 .container {
-	width: 100%;
+  width: 100%;
+  height: 200%;
   padding: 10px;
+  margin: 5px;
+  padding: 70px;
 }
+
 article {
   margin-bottom: 10px; 
   padding: 10px;

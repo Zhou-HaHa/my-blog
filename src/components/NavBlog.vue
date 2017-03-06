@@ -4,7 +4,7 @@
     <span class="navbar-toggler-icon"></span>
     </button>
       <router-link to="/" v-if='user'>
-        <span class="badge badge-success" >{{ $route.params.id }} 的博客</span>
+        <span class="badge badge-success" >{{ user }} 的博客</span>
       </router-link>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">

@@ -4,14 +4,15 @@ import { USER_SIGNIN, USER_SIGNOUT, USER_REG } from './types'
 export const UserLogin = ({ commit }, data) => {
   api.localLogin(data).then(function (response) {
     if (response.status === 200 && response.data.success) {
-      commit(USER_SIGNIN, response.data.data.user.account)
+      commit(USER_SIGNIN, response.data)
     }
   })
   .catch(function (error) {
     console.log(error)
     console.log('登陆失败error')
   })
-  // commit(USER_SIGNIN, 'test')
+  // let response = {data: {user: {account: 'test', avatarUrl: '123'}}, token: '1234'}
+  // commit(USER_SIGNIN, response)
 }
 
 export const UserLogout = ({ commit }, data) => {

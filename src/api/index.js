@@ -7,9 +7,9 @@ Vue.use(VueAxios, axios)
 var instance = axios.create()
 
 const ROOT_API = '/blog'
-// if (localStorage.getItem('user')) {
-//   instance.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('user').replace(/(^\\")|(\\"$)/g, '')
-// }
+if (localStorage.getItem('user')) {
+  instance.defaults.headers.common['Authorization'] = JSON.parse(localStorage.getItem('token'))
+}
 
 export default {
   localLogin: function (data) {
@@ -23,9 +23,9 @@ export default {
   },
   getBlogListByUser: function (data, currentPage) {
     if (currentPage) {
-      return Vue.axios.get(ROOT_API + '/blog/' + data + '?offset=' + currentPage)
+      return instance.get(ROOT_API + '/blog/' + data + '?offset=' + currentPage)
     }
-    return Vue.axios.get(ROOT_API + '/blog/' + data)
+    return instance.get(ROOT_API + '/blog/' + data)
   },
   getBlogList: function (currentPage) {
     if (currentPage) {
