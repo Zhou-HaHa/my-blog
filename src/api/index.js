@@ -23,9 +23,9 @@ export default {
   },
   getBlogListByUser: function (data, currentPage) {
     if (currentPage) {
-      return instance.get(ROOT_API + '/blog/' + data + '?offset=' + currentPage)
+      return Vue.axios.get(ROOT_API + '/blog/' + data + '?offset=' + currentPage)
     }
-    return instance.get(ROOT_API + '/blog/' + data)
+    return Vue.axios.get(ROOT_API + '/blog/' + data)
   },
   getBlogList: function (currentPage) {
     if (currentPage) {

@@ -80,8 +80,8 @@ export default {
     }
   },
   mounted () {
-    if (this.$store.getters.UserInfo) {
-      API.getBlogListByUser(this.$store.getters.UserInfo, 1).then(response => {
+    if (this.$route.path === '/blog/' || this.$route.path === '/blog') {
+      API.getBlogList(1).then(response => {
         if (!response.data.success) {
           this.message = response.data.message
           this.showPagination = response.data.success
@@ -93,7 +93,8 @@ export default {
         this.currentPage = response.data.pagination.currentPage
       })
     } else {
-      API.getBlogList(1).then(response => {
+      let id = this.$route.params.id
+      API.getBlogListByUser(id, 1).then(response => {
         if (!response.data.success) {
           this.message = response.data.message
           this.showPagination = response.data.success

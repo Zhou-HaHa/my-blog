@@ -60,12 +60,6 @@
     methods: {
       sub () {
         this.$store.dispatch('UserLogin', this.user)
-        if (this.$store.getters.UserInfo) {
-          this.$router.push('/blog/' + this.$store.getters.UserInfo)
-        } else {
-          console.log(this.$router)
-          this.$router.push('/blog')
-        }
       }
     }
   }
